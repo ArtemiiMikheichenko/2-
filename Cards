@@ -1,0 +1,62 @@
+public class Playing_card {
+    public static final String[] SUITS_LIST = {
+            "Пик", "Бубен", "Черв", "Треф"
+    };
+    public static final String[] RANK_LIST = {
+            "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "Валет", "Королева", "Король", "Туз"
+    };
+    public Playing_card()
+    {
+        rand();
+    }
+    public void PrintCard()
+    {
+        int tmp =0 ;
+        for (int i = 0; i < players; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                System.out.println(cards[tmp++]);//////
+            }
+
+            System.out.println("");
+        }
+    }
+
+    private static String[] cards = new String[52];
+    public void rand ()
+    {
+        int tmp = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 13; j++)//13 карт 4 видов
+            {
+                cards[tmp++] = SUITS_LIST[i] + " " + RANK_LIST[j];// создание колоды
+            }
+
+        }
+        for (int i = 0; i < 528; i++)
+        {
+            var j = (int) (Math.random()*52);
+            var k = (int) (Math.random()*52);
+            String str_tmp = cards[j];
+            cards[j] = cards[k];
+            cards[k] = str_tmp;
+        }
+
+    }
+    private int players;
+    public int getNumber_games() {
+        return players;
+    }
+
+    public void setNumber_games(int number_games) {
+        if (number_games > 0 && number_games < 6) {
+            this.players = number_games;
+        }
+        else
+            System.out.println("Ошибка! Введите от 1 до 5 игроков");
+    }
+
+}
